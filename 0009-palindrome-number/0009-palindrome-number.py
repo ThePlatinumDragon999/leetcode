@@ -4,10 +4,9 @@ class Solution:
             return False
         
         reverse = 0
-        original = x
-
-        while x > 0:
+        
+        while x > reverse:
             reverse = reverse * 10 + x % 10
-            x //= 10  
+            x //= 10
 
-        return original == reverse
+        return x == reverse or x == reverse // 10
