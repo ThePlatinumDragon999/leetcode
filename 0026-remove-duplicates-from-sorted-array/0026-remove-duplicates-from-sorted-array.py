@@ -1,15 +1,12 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        writeIndex = 1
+        write_index = 1
 
-        curElement = nums[0]
-
-        for readIndex in range(1, len(nums)):
-            if nums[readIndex] != curElement:
-                curElement = nums[readIndex]
-                nums[writeIndex] = curElement
-                writeIndex += 1
+        for read_index in range(1, len(nums)):
+            if nums[read_index] != nums[write_index - 1]:
+                nums[write_index] = nums[read_index]
+                write_index += 1
             
-        return writeIndex
+        return write_index
 
         
