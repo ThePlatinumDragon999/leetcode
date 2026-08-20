@@ -6,7 +6,9 @@ public:
 
         int curElement = nums[readIndex];
 
-        while (readIndex < nums.size()) 
+        size_t upperLim = nums.size();
+
+        while (readIndex < upperLim) 
         {
             if (nums[readIndex] != curElement) 
             {
