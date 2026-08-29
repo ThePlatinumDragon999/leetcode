@@ -8,15 +8,51 @@ public:
             return -1;
         }
 
-        for (auto i{0uz}; i <= hayLen - needleLen; ++i) {
-            for (auto j{0uz}; j < needleLen; ++j) {
-                if (haystack[i + j] != needle[j]) {
-                    break;
-                }
+        // Create prefix array
+        vector<unsigned int> lps(needleLen);
 
-                if (j == needleLen - 1) {
-                    return i;
+        lps[0] = 0;
+        size_t i = 1;
+        size_t length = 0;
+
+        while (i < needleLen) {
+            if (needle[i] == needle[length]) {
+                ++length;
+                lps[i] = length;
+                ++i;
+            }
+
+            else if (length > 0) {
+                length = lps[length - 1];
+            }
+
+            else {
+                lps[i] = 0;
+                ++i;
+            }
+        }
+
+        // i goes through haystack
+        // j goes through needle
+        i = 0;
+        int j = 0;
+
+        while (i < hayLen) {
+            if (haystack[i] == needle[j]) {
+                ++i;
+                ++j;
+
+                if (j == needleLen) {
+                    return i - j;
                 }
+            }
+
+            else if (j != 0) {
+                j = lps[j - 1];
+            }
+
+            else {
+                ++i;
             }
         }
 
