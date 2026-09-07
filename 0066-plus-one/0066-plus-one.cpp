@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
         int i = digits.size() - 1;
-        while (i >= 0 && (++digits[i] % 10) == 0) {
+        while (i >= 0 && ++digits[i] == 10) {
             digits[i] = 0;
             --i;
         }
