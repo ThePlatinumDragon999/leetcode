@@ -5,9 +5,9 @@ public:
             return n;
         }
 
-        long previous1 = 3;
-        long previous2 = 2;
-        long sum;
+        long long previous1 = 3;
+        long long previous2 = 2;
+        long long sum;
 
         for (int i = 4; i <= n; ++i) {
             sum = previous1 + previous2;
