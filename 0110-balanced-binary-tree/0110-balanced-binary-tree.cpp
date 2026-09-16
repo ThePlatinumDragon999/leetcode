@@ -16,18 +16,35 @@ public:
             return true;
         }
 
-        int leftHeight = subtreeHeight(root->left);
-        int rightHeight = subtreeHeight(root->right);
-        bool compare = abs(leftHeight - rightHeight) <= 1;
+        int depth = subtreeHeight(root);
 
-        return isBalanced(root->left) && isBalanced(root->right) && compare;
+        if (depth == -1) {
+            return false;
+        }
+
+        return true;
     }
+
 private:
     int subtreeHeight(TreeNode* node) {
         if (!node) {
             return 0;
         }
 
-        return 1 + max(subtreeHeight(node->left), subtreeHeight(node->right));
+        int leftDepth = subtreeHeight(node->left);
+        if (leftDepth == -1) {
+            return -1;
+        }
+
+        int rightDepth = subtreeHeight(node->right);
+        if (rightDepth == -1) {
+            return -1;
+        }
+
+        if (abs(rightDepth - leftDepth) > 1) {
+            return -1;
+        }
+
+        return 1 + max(leftDepth, rightDepth);
     }
 };
