@@ -12,27 +12,22 @@
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
-        if (!root) {
-            return false;
-        }
-
         return hasPathSumRecursive(root, targetSum, 0);
     }
 private:
     bool hasPathSumRecursive(TreeNode* node, int targetSum, int currentSum) {
         if (!node) {
+            return false;
+        }
+
+        currentSum += node->val;
+
+        if (!node->left && !node->right) {
             return currentSum == targetSum;
         }
 
-        if (!node->left) {
-            return hasPathSumRecursive(node->right, targetSum, currentSum + node->val);
-        }
-
-        if (!node->right) {
-            return hasPathSumRecursive(node->left, targetSum, currentSum += node->val);
-        }
-
-        return hasPathSumRecursive(node->left, targetSum, currentSum + node->val) ||
-        hasPathSumRecursive(node->right, targetSum, currentSum + node->val);
+        // If both children exist, go down both paths
+        return hasPathSumRecursive(node->left, targetSum, currentSum) ||
+        hasPathSumRecursive(node->right, targetSum, currentSum);
     }
 };
