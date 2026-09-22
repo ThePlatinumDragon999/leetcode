@@ -5,8 +5,11 @@ public:
         row[0] = 1;
         row[rowIndex] = 1;
 
-        for (int i = 1; i < rowIndex; ++i) {
+        int middle = rowIndex / 2;
+
+        for (int i = 1; i <= middle; ++i) {
             row[i] = binCo(rowIndex, i);
+            row[rowIndex - i] = row[i];
         }
 
         return row;
