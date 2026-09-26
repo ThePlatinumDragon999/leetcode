@@ -4,9 +4,10 @@ class Solution:
         currentProfit = 0
         maxProfit = 0
 
-        for i in range(0, len(prices) - 1):
-            currentProfit = prices[i+1] - lowestPriceSoFar
-            lowestPriceSoFar = min(lowestPriceSoFar, prices[i+1])
+        for i in range(len(prices) - 1):
+            currentPrice = prices[i+1]
+            currentProfit = currentPrice - lowestPriceSoFar
+            lowestPriceSoFar = min(lowestPriceSoFar, currentPrice)
 
             if (currentProfit > maxProfit):
                 maxProfit = currentProfit
