@@ -10,22 +10,21 @@
  * };
  */
 class Solution {
-    std::vector<int> nodes;
-
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        append(root);
+        std::vector<int> nodes;
+        append(root, nodes);
 
         return nodes;   
     }
 
 private:
-    void append(TreeNode* rootNode) {
+    void append(TreeNode* rootNode, vector<int>& nodes) {
         if (!rootNode)
             return;
         
-        append(rootNode->left);
+        append(rootNode->left, nodes);
         nodes.push_back(rootNode->val);
-        append(rootNode->right);
+        append(rootNode->right, nodes);
     }
 };
