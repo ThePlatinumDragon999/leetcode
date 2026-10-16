@@ -2,7 +2,7 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         unordered_map<int, int> count;
-        int size = nums.size(); // Added missing semicolon
+        int size = nums.size();
         for (int i = 0; i < size; ++i) {
             ++count[nums[i]];
         }
