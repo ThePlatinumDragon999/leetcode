@@ -1,24 +1,16 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        unordered_map<int, int> count;
-        int size = nums.size();
-        for (int i = 0; i < size; ++i) {
-            ++count[nums[i]];
+        int count = 0;
+        int candidate = 0;
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            count += candidate == num ? 1 : -1;
         }
 
-        if (!count.empty()) {
-            auto max_it = std::max_element(
-                count.begin(), 
-                count.end(),
-                [](const auto& p1, const auto& p2) {
-                    return p1.second < p2.second;
-                }
-            );
-
-            return max_it->first;
-        }
-        
-        return -1;
+        return candidate;
     }
 };
